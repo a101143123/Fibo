@@ -11,7 +11,7 @@ async function fetchOTC(sym){let all=[];for(let date of months(12)){let d=date.s
 async function fetchIndex(){let all=[];for(let date of months(12)){let j=await requestJSON('https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date='+date);let fields=j.fields||[];let closeIx=fields.findIndex(f=>/發行量加權股價指數|加權指數/.test(f));if(closeIx<0)closeIx=4;for(let row of j.data||[]){let date=rocDate(row[0]),close=numeric(row[closeIx]);if(date&&Number.isFinite(close)&&close>0)all.push({date,open:close,high:close,low:close,close,volume:0})}}return all}
 
 // Fibo Pro 3.1 test: try Cloudflare proxy first; never treat a health-check as market data.
-const FIBO_PROXY='https://fibo-api.a101143123.workers.dev';
+const FIBO_PROXY='https://fibo-api-test.a101143123.workers.dev';
 async function fetchProxyMarket(sym,market){
   const url=FIBO_PROXY+'/api/history?market='+encodeURIComponent(market)+'&symbol='+encodeURIComponent(sym)+'&months=12';
   const response=await fetch(url,{signal:AbortSignal.timeout(15000),cache:'no-store'});
