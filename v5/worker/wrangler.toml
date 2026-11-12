@@ -1,0 +1,10 @@
+name = "fibo-pro-v5-api"
+main = "src/index.js"
+compatibility_date = "2026-11-13"
+# Create a D1 database first, then replace DATABASE_ID before deploying.
+[[d1_databases]]
+binding = "DB"
+database_name = "fibo-pro-v5"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+[vars]
+HISTORY_API = "https://fibo-api.a101143123.workers.dev"
