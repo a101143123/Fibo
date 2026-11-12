@@ -12,7 +12,7 @@ async function fetchIndex(){let all=[];for(let date of months(12)){let j=await r
 const API_BASE='https://fibo-api.a101143123.workers.dev';
 async function fetchMarket(){
  const sym=$('symbol').value.trim(),market=$('market').value;
- if(market!=='taiex'&&!/^\\d{4,6}$/.test(sym)){msg('請輸入 4～6 位股票代號，或選擇加權指數。');return}
+ if(market!=='taiex'&&!/^\d{4,6}$/.test(sym)){msg('請輸入 4～6 位股票代號，或選擇加權指數。');return}
  const btn=$('fetch');btn.disabled=true;msg('正在透過 Fibo API 取得歷史行情…');
  try{
   const url=API_BASE+'/api/history?market='+encodeURIComponent(market)+'&symbol='+encodeURIComponent(market==='taiex'?'TAIEX':sym)+'&months=12';
